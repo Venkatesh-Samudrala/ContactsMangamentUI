@@ -1,0 +1,53 @@
+<!-- <h2 class="container-item">contacts</h2> -->
+
+<div class="">
+  <!-- <h2>Contacts App</h2> -->
+  <p *ngIf="!isContactsExists"><em>Loading...</em></p>
+  <div *ngIf="!isContactEdit">
+    <div>
+      <button type="button" class="btn btn-success" (click)="addContactClick()">Add</button>
+    </div>
+    <div *ngIf="isContactsExists">
+      <table class="table table-bordered">
+        <thead class="thead-light ">
+          <tr>
+            <th>ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of currentPageContacts">
+            <th>{{ item.id }}</th>
+            <td>{{ item.firstName }}</td>
+            <td>{{ item.lastName }}</td>
+            <td>{{ item.email }}</td>
+            <td>
+              <button type="button " class="btn btn-danger"  (click)="deleteContact(item)">Delete</button>
+              <button type="button" class="btn btn-primary" (click)="editContact(item)">Edit</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <app-pagination [current]="current" [total]="total" (goTo)="onGoTo($event)" (next)="onNext($event)"
+        (previous)="onPrevious($event)"></app-pagination>
+
+
+    </div>
+  </div>
+
+  <div *ngIf="isContactEdit">
+    <!-- <app-contact-edit *ngIf="selectedContact" [contactToEdit]="selectedContact" (save)="saveContact($event)"
+      (cancel)="cancelEdit()"></app-contact-edit> -->
+      <app-contact-edit 
+  [editMode]="selectedContact !== null"
+  [contactToEdit]="selectedContact"
+  (add)="saveContact($event)"
+  (update)="saveContact($event)"
+  (cancel)="cancelEdit()"
+></app-contact-edit >
+  </div>
+</div>

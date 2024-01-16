@@ -1,0 +1,23 @@
+<div>
+  <h2>{{ editMode ? 'Edit Contact' : 'Add Contact' }}</h2>
+  <div class="">
+    <form (submit)="onSubmit()">
+      <div class="form-group">
+        <label for="firstName" name="lblFirstName">First Name <span class="required red">*</span></label>
+        <input class="form-control" [(ngModel)]="newContact.firstName" id ="firstName" name="firstName" required />
+      </div>
+      <div class="form-group">
+        <label for="lastName" name="lblLastName">Last Name <span class="required red">*</span></label>
+
+      <input  class="form-control" [(ngModel)]="newContact.lastName" id ="lastName" name="lastName" required />
+    </div>
+    <div class="form-group">
+      <label for="email" name="lblEmail">Email <span class="required red">*</span></label>
+      <input  class="form-control" [(ngModel)]="newContact.email"  id ="email" name="email" required />
+    </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button"  class="btn btn-secondary" (click)="cancel.emit()">Cancel</button>
+    </form>
+  </div>
+    
+  </div>
